@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
 func main() {
 	//Make channel
@@ -17,13 +14,12 @@ func main() {
 		//Close(c) no longer can put values onto the channel but can still receive
 		close(c)
 	}()
+	//Keep receiving values until it is done
+	//and nothing else is on the channel. Program cannot end until everything is gone
+	for n := range c {
+		fmt.Println(n)
+		//When received it goes back up and repeats
 
-	go func() {
-		for {
-			fmt.Println(<-c) //Waiting to receive value off of the channel
-			//When received it goes back up and repeats
-		}
-	}()
+	}
 
-	time.Sleep(time.Second)
 }
