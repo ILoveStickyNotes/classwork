@@ -11,6 +11,7 @@ var wg sync.WaitGroup
 
 func main() {
 	wg.Add(2)
+	// go foo() and go bar() launches both funcitons simultaneously
 	go foo()
 	go bar()
 	wg.Wait()
